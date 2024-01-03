@@ -50,3 +50,4 @@ app.post('/send-sms', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+clear
