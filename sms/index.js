@@ -2,14 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const twilio = require('twilio');
+require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
 const port = 3001;
-
-// Twilio credentials
-const accountSid = 'ACb99933292164213cc32b7e6eec3f621f';
-const authToken = 'ed748e7e005fe46ba24dcc8c46a923df';
-const twilioPhoneNumber = '+16152660233';
 
 // Use the cors middleware
 app.use(cors());
@@ -29,12 +25,12 @@ app.post('/send-sms', (req, res) => {
 
         const smsBody = `Name: ${name}\nNumber:${number}\nEmail: ${email}\nMessage: ${message}`;
 
-        const client = twilio(accountSid, authToken);
+        const client = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
         client.messages
             .create({
                 body: smsBody,
-                from: twilioPhoneNumber,
+                from: process.env.TWILIO_PHONE_NUMBER,
                 to: '+918287825720'
             })
             .then(message => {
