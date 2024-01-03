@@ -5,7 +5,7 @@ const twilio = require('twilio');
 require('dotenv').config(); // Load environment variables from .env file
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT;
 
 // Use the cors middleware
 app.use(cors());
@@ -50,4 +50,3 @@ app.post('/send-sms', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
-clear
