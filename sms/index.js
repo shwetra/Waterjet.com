@@ -31,7 +31,7 @@ app.post('/send-sms', (req, res) => {
             .create({
                 body: smsBody,
                 from: process.env.TWILIO_PHONE_NUMBER,
-                to: '+918287825720'
+                to: '+918527415389'
             })
             .then(message => {
                 console.log(`Message sent with SID: ${message.sid}`);
